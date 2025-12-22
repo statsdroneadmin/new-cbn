@@ -505,12 +505,23 @@
                 
                 const data = await response.json();
                 
+                console.log('Full response:', data); // Debug - see entire response
+                
                 if (response.ok) {
-                    // Store subscriber ID for chat
-                    // n8n returns data in different possible structures
-                    subscriberId = data.id || data[0]?.id || (Array.isArray(data) && data.length > 0 ? data[0].id : null);
+                    // n8n returns array, get first item
+                    const result = Array.isArray(data) ? data[0] : data;
+                    subscriberId = result?.id || null;
                     
-                    console.log('Subscriber ID:', subscriberId); // Debug log
+                    console.log('Extracted Subscriber ID:', subscriberId); // Debug log
+                    
+                    if (!subscriberId) {
+                        console.error('No subscriber ID found in response:', data);
+                        errorMessage.textContent = 'Signup succeeded but ID missing. Please contact support.';
+                        errorMessage.style.display = 'block';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Subscribe Now';
+                        return;
+                    }
                     
                     // Show success message
                     successMessage.style.display = 'block';
