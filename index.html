@@ -507,7 +507,10 @@
                 
                 if (response.ok) {
                     // Store subscriber ID for chat
-                    subscriberId = data.id;
+                    // n8n returns data in different possible structures
+                    subscriberId = data.id || data[0]?.id || (Array.isArray(data) && data.length > 0 ? data[0].id : null);
+                    
+                    console.log('Subscriber ID:', subscriberId); // Debug log
                     
                     // Show success message
                     successMessage.style.display = 'block';
