@@ -212,9 +212,102 @@
         .chat-btn.secondary:hover {
             background: #d0d0d0;
         }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .cookie-banner.hidden {
+            display: none;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .cookie-text h4 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .cookie-text p {
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cookie-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-btn.accept {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .cookie-btn.accept:hover {
+            background: #45a049;
+        }
+
+        .cookie-btn.decline {
+            background: #666;
+            color: white;
+        }
+
+        .cookie-btn.decline:hover {
+            background: #555;
+        }
+
+        @media (max-width: 600px) {
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-text">
+            <h4>🍪 We value your privacy</h4>
+            <p>We use cookies and collect device information to improve your experience and personalize casino recommendations. By clicking "Accept", you consent to our use of cookies and data collection.</p>
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn decline" onclick="declineCookies()">Decline</button>
+            <button class="cookie-btn accept" onclick="acceptCookies()">Accept & Continue</button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="logo">
             <h1>🎰 Casino Bonus Newsletter</h1>
@@ -280,9 +373,96 @@
         const WEBHOOK_URL = 'https://n8n.automations.to/webhook/newsletter-signup';
         
         let subscriberId = null;
+        let cookiesAccepted = false;
+
+        // Check if user already accepted cookies
+        window.onload = function() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (consent === 'accepted') {
+                cookiesAccepted = true;
+                document.getElementById('cookieBanner').classList.add('hidden');
+            } else if (consent === 'declined') {
+                document.getElementById('cookieBanner').classList.add('hidden');
+            }
+        };
+
+        function acceptCookies() {
+            cookiesAccepted = true;
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieBanner').classList.add('hidden');
+        }
+
+        function declineCookies() {
+            cookiesAccepted = false;
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieBanner').classList.add('hidden');
+            alert('You have declined cookies. Some features may be limited.');
+        }
+
+        // Function to get device information
+        function getDeviceInfo() {
+            const userAgent = navigator.userAgent;
+            
+            // Detect device type
+            let deviceType = 'desktop';
+            if (/mobile/i.test(userAgent)) deviceType = 'mobile';
+            else if (/tablet|ipad/i.test(userAgent)) deviceType = 'tablet';
+            
+            // Detect operating system
+            let os = 'Unknown';
+            if (userAgent.indexOf('Win') !== -1) os = 'Windows';
+            else if (userAgent.indexOf('Mac') !== -1) os = 'macOS';
+            else if (userAgent.indexOf('Linux') !== -1) os = 'Linux';
+            else if (userAgent.indexOf('Android') !== -1) os = 'Android';
+            else if (userAgent.indexOf('iOS') !== -1 || userAgent.indexOf('iPhone') !== -1 || userAgent.indexOf('iPad') !== -1) os = 'iOS';
+            
+            // Detect browser
+            let browser = 'Unknown';
+            if (userAgent.indexOf('Firefox') !== -1) browser = 'Firefox';
+            else if (userAgent.indexOf('Chrome') !== -1) browser = 'Chrome';
+            else if (userAgent.indexOf('Safari') !== -1) browser = 'Safari';
+            else if (userAgent.indexOf('Edge') !== -1) browser = 'Edge';
+            else if (userAgent.indexOf('Opera') !== -1) browser = 'Opera';
+            
+            return {
+                deviceType: deviceType,
+                os: os,
+                browser: browser,
+                userAgent: userAgent,
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height,
+                windowWidth: window.innerWidth,
+                windowHeight: window.innerHeight,
+                language: navigator.language,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                platform: navigator.platform,
+                cookieEnabled: navigator.cookieEnabled,
+                doNotTrack: navigator.doNotTrack,
+                referrer: document.referrer || 'direct'
+            };
+        }
+
+        // Function to get IP address (uses external API)
+        async function getIPAddress() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.error('Could not fetch IP:', error);
+                return null;
+            }
+        }
 
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            // Check if cookies are accepted
+            if (!cookiesAccepted) {
+                alert('Please accept cookies to continue with signup.');
+                document.getElementById('cookieBanner').style.animation = 'shake 0.5s';
+                return;
+            }
             
             const submitBtn = document.getElementById('submitBtn');
             const successMessage = document.getElementById('successMessage');
@@ -297,11 +477,21 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
+            // Collect device info
+            const deviceInfo = getDeviceInfo();
+            
+            // Get IP address
+            const ipAddress = await getIPAddress();
+            
             // Get form data
             const formData = {
                 firstName: document.getElementById('firstName').value,
                 email: document.getElementById('email').value,
-                signupSource: 'website_form'
+                signupSource: 'website_form',
+                ipAddress: ipAddress,
+                deviceInfo: deviceInfo,
+                timestamp: new Date().toISOString(),
+                pageUrl: window.location.href
             };
             
             try {
