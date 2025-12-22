@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with AI - Casino Bonus Newsletter</title>
+    <title>Chat - Casino Bonus Assistant</title>
     <style>
         * {
             margin: 0;
@@ -34,16 +34,60 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .chat-header h1 {
+        .chat-header-left h1 {
             font-size: 24px;
             margin-bottom: 5px;
         }
 
-        .chat-header p {
+        .chat-header-left p {
             font-size: 14px;
             opacity: 0.9;
+        }
+
+        .header-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .progress-bar {
+            padding: 15px 20px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 20%;
+            transition: width 0.5s ease;
         }
 
         .chat-messages {
@@ -56,27 +100,16 @@
         .message {
             margin-bottom: 15px;
             animation: fadeIn 0.3s ease-out;
+            display: flex;
+            align-items: flex-start;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message.ai {
-            display: flex;
-            align-items: flex-start;
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .message.user {
-            display: flex;
-            align-items: flex-start;
             flex-direction: row-reverse;
         }
 
@@ -121,6 +154,99 @@
             border-bottom-right-radius: 4px;
         }
 
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 10px 50px;
+        }
+
+        .quick-reply-btn {
+            padding: 10px 18px;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .quick-reply-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .skip-button {
+            margin: 15px 0 15px 50px;
+            padding: 12px 24px;
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .skip-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .recommendations {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px 0 10px 50px;
+            max-width: 70%;
+            display: none;
+        }
+
+        .recommendations h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .casino-card {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .casino-card h4 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .casino-card p {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .casino-card a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .casino-card a:hover {
+            background: #5568d3;
+        }
+
         .chat-input-container {
             padding: 20px;
             background: white;
@@ -139,8 +265,6 @@
             border: 2px solid #e0e0e0;
             border-radius: 25px;
             font-size: 15px;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
         }
 
         .chat-input:focus {
@@ -157,17 +281,6 @@
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .send-button:hover {
-            transform: scale(1.05);
-        }
-
-        .send-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
         }
 
         .typing-indicator {
@@ -179,9 +292,7 @@
             margin-left: 50px;
         }
 
-        .typing-indicator.show {
-            display: block;
-        }
+        .typing-indicator.show { display: block; }
 
         .typing-indicator span {
             display: inline-block;
@@ -193,207 +304,204 @@
             animation: bounce 1.4s infinite;
         }
 
-        .typing-indicator span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-indicator span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 
         @keyframes bounce {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-10px);
-            }
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
         }
 
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-            margin-left: 50px;
-        }
-
-        .quick-reply-btn {
-            padding: 8px 16px;
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .quick-reply-btn:hover {
-            background: #667eea;
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
             color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: none;
         }
+
+        .toast.show { display: block; }
     </style>
 </head>
 <body>
+    <div class="toast" id="toast">✓ Chat copied!</div>
+
     <div class="chat-container">
         <div class="chat-header">
-            <h1>🎰 Casino Bonus Assistant</h1>
-            <p>Let's find the perfect casino bonuses for you!</p>
+            <div class="chat-header-left">
+                <h1>🎰 Casino Bonus Assistant</h1>
+                <p>Let's find your perfect casino!</p>
+            </div>
+            <button class="header-btn" onclick="copyChat()">📋 Copy Chat</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-text" id="progressText">Question 1 of 5</div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
         </div>
 
         <div class="chat-messages" id="chatMessages">
             <div class="message ai">
                 <div class="message-avatar">🤖</div>
                 <div class="message-content">
-                    Hi! I'm your personal casino bonus assistant. I'd love to learn about your gambling preferences to recommend the best bonuses for you. 
+                    Hi! I'll ask you 5 quick questions to find the best casino bonuses for you.
                     <br><br>
-                    What types of casino games do you enjoy the most?
+                    <strong>Question 1:</strong> What types of casino games do you enjoy?
                 </div>
             </div>
-            <div class="quick-replies">
-                <button class="quick-reply-btn" onclick="sendQuickReply('Slots')">🎰 Slots</button>
-                <button class="quick-reply-btn" onclick="sendQuickReply('Blackjack')">🃏 Blackjack</button>
-                <button class="quick-reply-btn" onclick="sendQuickReply('Poker')">♠️ Poker</button>
-                <button class="quick-reply-btn" onclick="sendQuickReply('Roulette')">🎡 Roulette</button>
-                <button class="quick-reply-btn" onclick="sendQuickReply('All games')">🎲 All games</button>
+            <div class="quick-replies" id="quickReplies1">
+                <button class="quick-reply-btn" onclick="answer('Slots', 1)">🎰 Slots</button>
+                <button class="quick-reply-btn" onclick="answer('Blackjack', 1)">🃏 Blackjack</button>
+                <button class="quick-reply-btn" onclick="answer('Poker', 1)">♠️ Poker</button>
+                <button class="quick-reply-btn" onclick="answer('Roulette', 1)">🎡 Roulette</button>
+                <button class="quick-reply-btn" onclick="answer('All games', 1)">🎲 All</button>
             </div>
-            <div class="typing-indicator" id="typingIndicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="typing-indicator" id="typing"><span></span><span></span><span></span></div>
+            <button class="skip-button" id="skipBtn" onclick="skip()">⚡ Just Show Me Offers</button>
+            <div class="recommendations" id="recs"></div>
         </div>
 
         <div class="chat-input-container">
             <div class="chat-input-wrapper">
-                <input 
-                    type="text" 
-                    class="chat-input" 
-                    id="chatInput" 
-                    placeholder="Type your message..."
-                    autocomplete="off"
-                >
-                <button class="send-button" id="sendButton" onclick="sendMessage()">
-                    Send
-                </button>
+                <input type="text" class="chat-input" id="input" placeholder="Or type your answer..." />
+                <button class="send-button" onclick="send()">Send</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Get subscriber ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const subscriberId = urlParams.get('sid');
-
-        // IMPORTANT: Replace with your n8n webhook URL
-        const CHAT_WEBHOOK_URL = 'https://n8n.automations.to/webhook/chat';
-
-        let conversationHistory = [];
-        let profileData = {};
-
-        // Enable Enter key to send
-        document.getElementById('chatInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        async function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            // Add user message to chat
-            addMessage(message, 'user');
-            input.value = '';
-            
-            // Show typing indicator
-            document.getElementById('typingIndicator').classList.add('show');
-            
-            // Send to n8n webhook which calls Claude
+        const sid = new URLSearchParams(window.location.search).get('sid');
+        const WEBHOOK = 'https://n8n.automations.to/webhook/chat';
+        
+        let q = 1;
+        let data = {};
+        let history = [];
+        
+        const qs = {
+            2: {t: "How often do you play?", o: ["Daily","2-3x week","Weekly","Monthly","Rarely"], f:"freq"},
+            3: {t: "Typical deposit amount?", o: ["$20-50","$50-100","$100-250","$250-500","$500+"], f:"budget"},
+            4: {t: "Online or land-based?", o: ["Online","Land-based","Both"], f:"pref"},
+            5: {t: "Crypto casinos?", o: ["Yes!","Maybe","No thanks"], f:"crypto"}
+        };
+        
+        document.getElementById('input').addEventListener('keypress', e => e.key==='Enter' && send());
+        
+        async function answer(a, n) {
+            hide(`quickReplies${n}`);
+            addMsg(a, 'user');
+            data[qs[n]?.f || 'games'] = a;
+            show('typing');
+            await wait(1000);
+            hide('typing');
+            q++;
+            update();
+            if(q <= 5) next(); else finish();
+        }
+        
+        function send() {
+            const v = document.getElementById('input').value.trim();
+            if(!v) return;
+            document.getElementById('input').value = '';
+            hide(`quickReplies${q}`);
+            answer(v, q);
+        }
+        
+        function next() {
+            const {t,o,f} = qs[q];
+            addMsg(`<strong>Q${q}:</strong> ${t}`, 'ai');
+            const div = make('div', 'quick-replies', `quickReplies${q}`);
+            o.forEach(opt => {
+                const btn = make('button', 'quick-reply-btn');
+                btn.textContent = opt;
+                btn.onclick = () => answer(opt, q);
+                div.appendChild(btn);
+            });
+            document.getElementById('chatMessages').insertBefore(div, document.getElementById('typing'));
+            scroll();
+        }
+        
+        async function finish() {
             try {
-                const response = await fetch(CHAT_WEBHOOK_URL, {
+                const res = await fetch(WEBHOOK, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        subscriberId: subscriberId,
-                        message: message,
-                        conversationHistory: conversationHistory,
-                        profileData: profileData
-                    })
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({subscriberId: sid, profileData: data, conversationHistory: history})
                 });
-                
-                const data = await response.json();
-                
-                // Hide typing indicator
-                document.getElementById('typingIndicator').classList.remove('show');
-                
-                // Add AI response
-                addMessage(data.response, 'ai');
-                
-                // Update conversation history
-                conversationHistory.push({
-                    role: 'user',
-                    content: message
-                }, {
-                    role: 'assistant',
-                    content: data.response
-                });
-                
-                // Update profile data if provided
-                if (data.profileData) {
-                    profileData = { ...profileData, ...data.profileData };
-                }
-                
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('typingIndicator').classList.remove('show');
-                addMessage('Sorry, I had trouble processing that. Could you try again?', 'ai');
+                const json = await res.json();
+                showRecs(json.recommendations);
+            } catch(e) {
+                addMsg("Thanks! Check your email for personalized offers.", 'ai');
             }
         }
-
-        function sendQuickReply(text) {
-            document.getElementById('chatInput').value = text;
-            sendMessage();
-            
-            // Hide quick replies after first use
-            document.querySelector('.quick-replies').style.display = 'none';
+        
+        function skip() {
+            hide('skipBtn');
+            addMsg("Sure! Here are some great offers based on what you've shared.", 'ai');
+            setTimeout(finish, 500);
         }
-
-        function addMessage(text, sender) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            
-            const avatar = document.createElement('div');
-            avatar.className = 'message-avatar';
-            avatar.textContent = sender === 'ai' ? '🤖' : '👤';
-            
-            const content = document.createElement('div');
-            content.className = 'message-content';
-            content.textContent = text;
-            
-            messageDiv.appendChild(avatar);
-            messageDiv.appendChild(content);
-            
-            // Insert before typing indicator
-            const typingIndicator = document.getElementById('typingIndicator');
-            messagesContainer.insertBefore(messageDiv, typingIndicator);
-            
-            // Scroll to bottom
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        
+        function showRecs(cs) {
+            cs = cs || [
+                {name:"Stake Casino",reason:"Great for slots - 200% bonus",link:`https://n8n.automations.to/webhook/click?sid=${sid}&cid=stake&url=https://stake.com`},
+                {name:"BetOnline",reason:"Perfect for table games - $3000 package",link:`https://n8n.automations.to/webhook/click?sid=${sid}&cid=betonline&url=https://betonline.ag`},
+                {name:"Bovada",reason:"All-in-one platform - $3750 bonus",link:`https://n8n.automations.to/webhook/click?sid=${sid}&cid=bovada&url=https://bovada.lv`}
+            ];
+            let h = '<h3>🎯 Your Recommendations</h3>';
+            cs.forEach((c,i) => h += `<div class="casino-card"><h4>${i+1}. ${c.name}</h4><p>${c.reason}</p><a href="${c.link}">Claim Bonus →</a></div>`);
+            document.getElementById('recs').innerHTML = h;
+            show('recs');
+            hide('skipBtn');
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Complete! ✓';
+            scroll();
         }
-
-        // Check if subscriber ID exists
-        if (!subscriberId) {
-            addMessage('Oops! It looks like you came here directly. Please sign up first at our newsletter page.', 'ai');
-            document.getElementById('chatInput').disabled = true;
-            document.getElementById('sendButton').disabled = true;
+        
+        function addMsg(txt, who) {
+            const div = make('div', `message ${who}`);
+            const av = make('div', 'message-avatar');
+            av.textContent = who==='user'?'👤':'🤖';
+            const con = make('div', 'message-content');
+            con.innerHTML = txt;
+            div.appendChild(av);
+            div.appendChild(con);
+            document.getElementById('chatMessages').insertBefore(div, document.getElementById('typing'));
+            history.push({role:who==='user'?'user':'assistant',content:txt.replace(/<[^>]*>/g,'')});
+            scroll();
         }
+        
+        function update() {
+            document.getElementById('progressFill').style.width = (q/5*100)+'%';
+            document.getElementById('progressText').textContent = `Question ${q} of 5`;
+            if(q>=3) show('skipBtn');
+        }
+        
+        function copyChat() {
+            let t = "Casino Chat\n============\n\n";
+            history.forEach(m => t += `${m.role==='user'?'You':'Bot'}: ${m.content}\n\n`);
+            navigator.clipboard.writeText(t);
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+        
+        function make(tag, cls, id) {
+            const el = document.createElement(tag);
+            if(cls) el.className = cls;
+            if(id) el.id = id;
+            return el;
+        }
+        function show(id) { document.getElementById(id).style.display = 'block'; }
+        function hide(id) { const el = document.getElementById(id); if(el) el.style.display = 'none'; }
+        function scroll() { document.getElementById('chatMessages').scrollTop = 9999; }
+        function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+        
+        update();
     </script>
 </body>
 </html>
