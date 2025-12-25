@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Casinos - Just For You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .casinos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .casino-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .casino-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .casino-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .casino-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .casino-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .casino-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .casino-logo {
+            width: 80px;
+            height: 80px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-right: 20px;
+        }
+
+        .casino-info h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .casino-rating {
+            color: #FFD700;
+            font-size: 18px;
+        }
+
+        .casino-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .casino-features li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .casino-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .bonus-box {
+            background: #f8f8f8;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .bonus-box h3 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .bonus-amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .bonus-details {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .claim-button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .claim-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .terms {
+            font-size: 11px;
+            color: #999;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 30px;
+            opacity: 0.8;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .casinos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎰 Your Personalized Casino Recommendations</h1>
+            <p>Exclusive bonuses selected just for you!</p>
+        </div>
+
+        <div class="casinos-grid">
+            <!-- Casino 1 -->
+            <div class="casino-card">
+                <span class="casino-badge">🏆 RECOMMENDED #1</span>
+                <div class="casino-header">
+                    <div class="casino-logo">🎲</div>
+                    <div class="casino-info">
+                        <h2>BitStarz</h2>
+                        <div class="casino-rating">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="bonus-box">
+                    <h3>Welcome Bonus</h3>
+                    <div class="bonus-amount">$500 + 180 Free Spins</div>
+                    <div class="bonus-details">First deposit bonus</div>
+                </div>
+
+                <ul class="casino-features">
+                    <li>Instant withdrawals</li>
+                    <li>3000+ games from top providers</li>
+                    <li>Crypto & traditional payments</li>
+                    <li>24/7 customer support</li>
+                    <li>Provably fair games</li>
+                </ul>
+
+                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="bitstarz-1">
+                    Claim Bonus →
+                </a>
+                <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
+            </div>
+
+            <!-- Casino 2 -->
+            <div class="casino-card">
+                <span class="casino-badge">🔥 TRENDING</span>
+                <div class="casino-header">
+                    <div class="casino-logo">🎲</div>
+                    <div class="casino-info">
+                        <h2>BitStarz</h2>
+                        <div class="casino-rating">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="bonus-box">
+                    <h3>Welcome Bonus</h3>
+                    <div class="bonus-amount">$500 + 180 Free Spins</div>
+                    <div class="bonus-details">First deposit bonus</div>
+                </div>
+
+                <ul class="casino-features">
+                    <li>Instant withdrawals</li>
+                    <li>3000+ games from top providers</li>
+                    <li>Crypto & traditional payments</li>
+                    <li>24/7 customer support</li>
+                    <li>Provably fair games</li>
+                </ul>
+
+                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="bitstarz-2">
+                    Claim Bonus →
+                </a>
+                <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
+            </div>
+
+            <!-- Casino 3 -->
+            <div class="casino-card">
+                <span class="casino-badge">⚡ FAST PAYOUTS</span>
+                <div class="casino-header">
+                    <div class="casino-logo">🎲</div>
+                    <div class="casino-info">
+                        <h2>BitStarz</h2>
+                        <div class="casino-rating">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="bonus-box">
+                    <h3>Welcome Bonus</h3>
+                    <div class="bonus-amount">$500 + 180 Free Spins</div>
+                    <div class="bonus-details">First deposit bonus</div>
+                </div>
+
+                <ul class="casino-features">
+                    <li>Instant withdrawals</li>
+                    <li>3000+ games from top providers</li>
+                    <li>Crypto & traditional payments</li>
+                    <li>24/7 customer support</li>
+                    <li>Provably fair games</li>
+                </ul>
+
+                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="bitstarz-3">
+                    Claim Bonus →
+                </a>
+                <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Why we recommend these casinos:</strong></p>
+            <p>All casinos are licensed, secure, and offer fair gaming. We may earn commission from casino links.</p>
+            <p>Gambling can be addictive. Please play responsibly. 18+</p>
+        </div>
+    </div>
+
+    <script>
+        // Get user short_id from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user');
+
+        console.log('User ID:', userId);
+
+        // Set up tracking links for all casino buttons
+        document.querySelectorAll('.claim-button').forEach(button => {
+            const casinoId = button.getAttribute('data-casino');
+            
+            // Build tracking URL with user's short_id
+            const trackingUrl = `https://bzstarz1.com/bvtmcxdun?click_id=${userId}_${casinoId}_${Date.now()}`;
+            
+            button.href = trackingUrl;
+            
+            // Track click event
+            button.addEventListener('click', function(e) {
+                console.log('Casino clicked:', casinoId, 'User:', userId);
+                
+                // Optional: Send click to your tracking webhook
+                fetch('https://n8n.automations.to/webhook/click', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        userId: userId,
+                        casino: casinoId,
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(err => console.log('Tracking error:', err));
+            });
+        });
+
+        // If no user ID, show warning
+        if (!userId) {
+            console.warn('No user ID found in URL');
+        }
+    </script>
+</body>
+</html>
