@@ -338,8 +338,8 @@
         document.querySelectorAll('.claim-button').forEach(button => {
             const casinoId = button.getAttribute('data-casino');
             
-            // Build tracking URL with user's short_id
-            const trackingUrl = `https://bzstarz1.com/bvtmcxdun?click_id=${userId}_${casinoId}_${Date.now()}`;
+            // Build tracking URL with only short_id
+            const trackingUrl = `https://bzstarz1.com/bvtmcxdun?click_id=${userId}`;
             
             button.href = trackingUrl;
             
