@@ -257,63 +257,63 @@
                 <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
             </div>
 
-            <!-- Casino 2 -->
+            <!-- Casino 2 - Cadoola -->
             <div class="casino-card">
                 <span class="casino-badge">🔥 TRENDING</span>
                 <div class="casino-header">
-                    <div class="casino-logo">🎲</div>
+                    <div class="casino-logo">🎰</div>
                     <div class="casino-info">
-                        <h2>BitStarz</h2>
+                        <h2>Cadoola</h2>
                         <div class="casino-rating">★★★★★</div>
                     </div>
                 </div>
 
                 <div class="bonus-box">
                     <h3>Welcome Bonus</h3>
-                    <div class="bonus-amount">$500 + 180 Free Spins</div>
+                    <div class="bonus-amount">€500 + 200 Free Spins</div>
                     <div class="bonus-details">First deposit bonus</div>
                 </div>
 
                 <ul class="casino-features">
-                    <li>Instant withdrawals</li>
-                    <li>3000+ games from top providers</li>
-                    <li>Crypto & traditional payments</li>
+                    <li>Wide selection of slots & table games</li>
+                    <li>Fast withdrawal processing</li>
+                    <li>Multiple payment methods</li>
                     <li>24/7 customer support</li>
-                    <li>Provably fair games</li>
+                    <li>Mobile-friendly platform</li>
                 </ul>
 
-                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="bitstarz-2">
+                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="cadoola">
                     Claim Bonus →
                 </a>
                 <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
             </div>
 
-            <!-- Casino 3 -->
+            <!-- Casino 3 - Alf Casino -->
             <div class="casino-card">
                 <span class="casino-badge">⚡ FAST PAYOUTS</span>
                 <div class="casino-header">
-                    <div class="casino-logo">🎲</div>
+                    <div class="casino-logo">👽</div>
                     <div class="casino-info">
-                        <h2>BitStarz</h2>
+                        <h2>Alf Casino</h2>
                         <div class="casino-rating">★★★★★</div>
                     </div>
                 </div>
 
                 <div class="bonus-box">
                     <h3>Welcome Bonus</h3>
-                    <div class="bonus-amount">$500 + 180 Free Spins</div>
+                    <div class="bonus-amount">€500 + 200 Free Spins</div>
                     <div class="bonus-details">First deposit bonus</div>
                 </div>
 
                 <ul class="casino-features">
-                    <li>Instant withdrawals</li>
-                    <li>3000+ games from top providers</li>
-                    <li>Crypto & traditional payments</li>
-                    <li>24/7 customer support</li>
-                    <li>Provably fair games</li>
+                    <li>Lightning-fast withdrawals</li>
+                    <li>Exclusive game providers</li>
+                    <li>Cryptocurrency friendly</li>
+                    <li>VIP loyalty program</li>
+                    <li>Regular tournaments & promotions</li>
                 </ul>
 
-                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="bitstarz-3">
+                <a href="#" class="claim-button" rel="nofollow" target="_blank" data-casino="alfcasino">
                     Claim Bonus →
                 </a>
                 <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
@@ -338,8 +338,16 @@
         document.querySelectorAll('.claim-button').forEach(button => {
             const casinoId = button.getAttribute('data-casino');
             
-            // Build tracking URL with only short_id
-            const trackingUrl = `https://bzstarz1.com/bvtmcxdun?click_id=${userId}`;
+            let trackingUrl;
+            
+            // Set tracking URL based on casino
+            if (casinoId === 'bitstarz-1') {
+                trackingUrl = `https://bzstarz1.com/bvtmcxdun?click_id=${userId}`;
+            } else if (casinoId === 'cadoola') {
+                trackingUrl = `https://cadw.monalvor.com/?mid=100089_1949693&var1=${userId}`;
+            } else if (casinoId === 'alfcasino') {
+                trackingUrl = `https://alcw.monalvor.com/?mid=100089_2002008&var1=${userId}`;
+            }
             
             button.href = trackingUrl;
             
