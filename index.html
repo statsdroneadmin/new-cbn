@@ -370,7 +370,7 @@
 
     <script>
         // Your n8n webhook URL
-        const WEBHOOK_URL = 'https://n8n.automations.to/webhook/newsletter-signup-v2';
+        const WEBHOOK_URL = 'https://n8n.automations.to/webhook/newsletter-signup';
         
         let subscriberId = null;
         let cookiesAccepted = false;
@@ -508,11 +508,12 @@
                 console.log('Full response:', data); // Debug - see entire response
                 
                 if (response.ok) {
-                    // n8n returns array, get first item
-                    const result = Array.isArray(data) ? data[0] : data;
-                    subscriberId = result?.id || null;
+                    // n8n returns data
+                    subscriberId = data?.id || null;
+                    const shortId = data?.short_id || null;
                     
                     console.log('Extracted Subscriber ID:', subscriberId); // Debug log
+                    console.log('Short ID:', shortId); // Debug log
                     
                     if (!subscriberId) {
                         console.error('No subscriber ID found in response:', data);
@@ -523,17 +524,13 @@
                         return;
                     }
                     
-                    // Show success message
-                    successMessage.style.display = 'block';
-                    
-                    // Hide form
-                    document.getElementById('signupForm').style.display = 'none';
-                    
-                    // Show chat prompt
-                    chatPrompt.style.display = 'block';
-                    
-                    // Scroll to chat prompt
-                    chatPrompt.scrollIntoView({ behavior: 'smooth' });
+                    // Redirect to recommendations page with short_id
+                    if (shortId) {
+                        window.location.href = `/recommended-for-you.html?user=${shortId}`;
+                    } else {
+                        // Fallback if short_id is missing
+                        window.location.href = `/recommended-for-you.html?user=${subscriberId}`;
+                    }
                 } else {
                     throw new Error('Subscription failed');
                 }
