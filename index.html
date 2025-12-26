@@ -410,6 +410,262 @@
         .cookie-btn.decline:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+
+        /* Survey Styles */
+        .survey-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .survey-header {
+            margin-bottom: 35px;
+        }
+
+        .survey-header h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .survey-subtitle {
+            color: #a8b2d1;
+            font-size: 15px;
+        }
+
+        .survey-question {
+            margin-bottom: 35px;
+        }
+
+        .survey-label {
+            display: block;
+            color: #e6e6e6;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-custom {
+            background: #ffd700;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #1a1a2e;
+            border-radius: 50%;
+        }
+
+        .radio-text {
+            color: white;
+            font-size: 15px;
+        }
+
+        /* Checkboxes */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffd700;
+            border-radius: 4px;
+            margin-right: 10px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .checkbox-option input[type="checkbox"]:checked + .checkbox-custom {
+            background: #ffd700;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+        }
+
+        .checkbox-option input[type="checkbox"]:checked + .checkbox-custom::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #1a1a2e;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .checkbox-text {
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Country Select */
+        .country-select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .country-select:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
+        }
+
+        .country-select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        /* Survey Buttons */
+        .survey-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .skip-btn {
+            padding: 14px;
+            background: transparent;
+            color: #ffd700;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skip-btn:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+        }
+
+        /* Fly Away Animation for Icons */
+        .graphics-side.fly-away .floating-icon {
+            animation: flyAway 1s ease-in forwards;
+        }
+
+        .graphics-side.fly-away .floating-icon:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .graphics-side.fly-away .floating-icon:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .graphics-side.fly-away .floating-icon:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .graphics-side.fly-away .floating-icon:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+
+        .graphics-side.fly-away .floating-icon:nth-child(5) {
+            animation-delay: 0.05s;
+        }
+
+        @keyframes flyAway {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) scale(0.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .survey-header h2 {
+                font-size: 26px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -480,6 +736,127 @@
                         <li>Weekly updates on the hottest casino promotions</li>
                         <li>Early access to new casino launches</li>
                     </ul>
+                </div>
+
+                <!-- Survey Section (Hidden Initially) -->
+                <div class="survey-section" id="surveySection" style="display: none;">
+                    <div class="survey-header">
+                        <h2>🎯 Personalize Your Experience</h2>
+                        <p class="survey-subtitle">Help us send you the most relevant casino offers</p>
+                    </div>
+
+                    <form id="surveyForm">
+                        <!-- Question 1: Frequency -->
+                        <div class="survey-question">
+                            <label class="survey-label">How often do you want to receive offers?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="frequency" value="daily" required>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Daily deals</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="frequency" value="few_times_week">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">A few times a week</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="frequency" value="weekly">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Weekly</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="frequency" value="best_only">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Only the best offers</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Games -->
+                        <div class="survey-question">
+                            <label class="survey-label">What games do you like to play? (Select all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="blackjack">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🃏 Blackjack</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="roulette">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🎡 Roulette</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="table_games">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🎲 Table Games</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="live_games">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">📹 Live Games</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="slots">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🎰 Slots</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="jackpots">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">💰 Jackpots</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="games" value="crash_games">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🚀 Crash Games</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Country -->
+                        <div class="survey-question">
+                            <label class="survey-label" for="country">What country do you live in?</label>
+                            <select id="country" name="country" class="country-select" required>
+                                <option value="">Select your country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="ES">Spain</option>
+                                <option value="IT">Italy</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="SE">Sweden</option>
+                                <option value="NO">Norway</option>
+                                <option value="FI">Finland</option>
+                                <option value="IE">Ireland</option>
+                                <option value="BR">Brazil</option>
+                                <option value="MX">Mexico</option>
+                                <option value="AR">Argentina</option>
+                                <option value="CL">Chile</option>
+                                <option value="IN">India</option>
+                                <option value="JP">Japan</option>
+                                <option value="KR">South Korea</option>
+                                <option value="SG">Singapore</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="survey-buttons">
+                            <button type="submit" class="submit-btn" id="surveySubmitBtn">
+                                Submit & View Offers
+                            </button>
+                            <button type="button" class="skip-btn" onclick="skipSurvey()">
+                                Just show me offers now →
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -634,16 +1011,25 @@
                         return;
                     }
                     
-                    // Show success and redirect
+                    // Store IDs for later use
+                    window.subscriberId = subscriberId;
+                    window.shortId = shortId;
+                    
+                    // Show success message
                     successMessage.style.display = 'block';
                     
+                    // Animate bubbles flying away
                     setTimeout(() => {
-                        if (shortId) {
-                            window.location.href = `/recommended-for-you.html?user=${shortId}`;
-                        } else {
-                            window.location.href = `/recommended-for-you.html?user=${subscriberId}`;
-                        }
-                    }, 1500);
+                        document.querySelector('.graphics-side').classList.add('fly-away');
+                    }, 500);
+                    
+                    // Show survey after bubbles fly away
+                    setTimeout(() => {
+                        document.getElementById('signupForm').style.display = 'none';
+                        document.querySelector('.benefits').style.display = 'none';
+                        document.getElementById('surveySection').style.display = 'block';
+                        successMessage.style.display = 'none';
+                    }, 1800);
                 } else {
                     throw new Error('Subscription failed');
                 }
@@ -655,6 +1041,72 @@
                 submitBtn.textContent = 'Get My Bonuses';
             }
         });
+
+        // Survey submission
+        document.getElementById('surveyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const surveyBtn = document.getElementById('surveySubmitBtn');
+            surveyBtn.disabled = true;
+            surveyBtn.textContent = 'Saving...';
+            
+            // Collect survey data
+            const frequency = document.querySelector('input[name="frequency"]:checked')?.value;
+            const games = Array.from(document.querySelectorAll('input[name="games"]:checked')).map(el => el.value);
+            const country = document.getElementById('country').value;
+            
+            const surveyData = {
+                subscriberId: window.subscriberId,
+                shortId: window.shortId,
+                frequency: frequency,
+                games: games,
+                country: country
+            };
+            
+            console.log('Survey data:', surveyData);
+            
+            // Send survey data to n8n webhook
+            try {
+                const response = await fetch('https://n8n.automations.to/webhook/survey', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(surveyData)
+                });
+                
+                if (response.ok) {
+                    console.log('Survey saved successfully');
+                } else {
+                    console.error('Survey save failed');
+                }
+            } catch (error) {
+                console.error('Survey error:', error);
+                // Still redirect even if survey fails
+            }
+            
+            // Redirect to offers page
+            setTimeout(() => {
+                redirectToOffers();
+            }, 500);
+        });
+
+        // Skip survey and go straight to offers
+        function skipSurvey() {
+            redirectToOffers();
+        }
+
+        // Redirect to offers page
+        function redirectToOffers() {
+            const shortId = window.shortId;
+            const subscriberId = window.subscriberId;
+            
+            if (shortId) {
+                window.location.href = `/recommended-for-you.html?user=${shortId}`;
+            } else {
+                window.location.href = `/recommended-for-you.html?user=${subscriberId}`;
+            }
+        }
     </script>
 </body>
 </html>
