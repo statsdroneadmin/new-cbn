@@ -666,6 +666,136 @@
                 font-size: 26px;
             }
         }
+
+        /* Extended Survey Styles */
+        .field-description {
+            color: #a8b2d1;
+            font-size: 13px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .contact-field {
+            margin-bottom: 20px;
+        }
+
+        .contact-label {
+            display: block;
+            color: #e6e6e6;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .country-code-select {
+            width: 120px;
+            padding: 14px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .country-code-select:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .country-code-select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .phone-number-input {
+            flex: 1;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .phone-number-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .phone-number-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .text-area-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-family: inherit;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .text-area-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .text-area-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .word-count {
+            text-align: right;
+            color: #a8b2d1;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .word-count.warning {
+            color: #ffed4e;
+        }
+
+        .word-count.limit {
+            color: #ff6b6b;
+        }
     </style>
 </head>
 <body>
@@ -850,10 +980,177 @@
                         <!-- Buttons -->
                         <div class="survey-buttons">
                             <button type="submit" class="submit-btn" id="surveySubmitBtn">
-                                Submit & View Offers
+                                Continue
                             </button>
                             <button type="button" class="skip-btn" onclick="skipSurvey()">
                                 Just show me offers now →
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Extended Survey Section (Hidden Initially) -->
+                <div class="survey-section" id="extendedSurveySection" style="display: none;">
+                    <div class="survey-header">
+                        <h2>📊 Help Us Serve You Better</h2>
+                        <p class="survey-subtitle">Optional: Share a bit more to get personalized recommendations</p>
+                    </div>
+
+                    <form id="extendedSurveyForm">
+                        <!-- Question 1: What to bet on -->
+                        <div class="survey-question">
+                            <label class="survey-label">What do you like to bet on? (Select all that apply)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="betting_types" value="casino">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🎰 Casino</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="betting_types" value="sports">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">⚽ Sports Betting</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="betting_types" value="poker">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🃏 Poker</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="betting_types" value="lottery">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🎫 Lottery</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="betting_types" value="bingo">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🔢 Bingo</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="betting_types" value="predictions">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">🔮 Predictions</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Spend per session -->
+                        <div class="survey-question">
+                            <label class="survey-label">How much do you spend per session?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="spend_per_session" value="under_100">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Under $100</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="spend_per_session" value="100_to_500">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">$100 up to $500</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="spend_per_session" value="over_500">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Over $500</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Chat direct -->
+                        <div class="survey-question">
+                            <label class="survey-label">Chat direct with us (Optional)</label>
+                            <p class="field-description">Connect with us for exclusive personalized offers</p>
+                            
+                            <!-- SMS -->
+                            <div class="contact-field">
+                                <label class="contact-label">📱 SMS</label>
+                                <div class="phone-input-group">
+                                    <select id="smsCountryCode" name="sms_country_code" class="country-code-select">
+                                        <option value="">Code</option>
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+1">🇨🇦 +1</option>
+                                        <option value="+44">🇬🇧 +44</option>
+                                        <option value="+61">🇦🇺 +61</option>
+                                        <option value="+64">🇳🇿 +64</option>
+                                        <option value="+49">🇩🇪 +49</option>
+                                        <option value="+33">🇫🇷 +33</option>
+                                        <option value="+34">🇪🇸 +34</option>
+                                        <option value="+39">🇮🇹 +39</option>
+                                        <option value="+31">🇳🇱 +31</option>
+                                        <option value="+46">🇸🇪 +46</option>
+                                        <option value="+47">🇳🇴 +47</option>
+                                        <option value="+353">🇮🇪 +353</option>
+                                        <option value="+55">🇧🇷 +55</option>
+                                        <option value="+52">🇲🇽 +52</option>
+                                        <option value="+91">🇮🇳 +91</option>
+                                        <option value="+81">🇯🇵 +81</option>
+                                        <option value="+82">🇰🇷 +82</option>
+                                        <option value="+65">🇸🇬 +65</option>
+                                        <option value="+27">🇿🇦 +27</option>
+                                    </select>
+                                    <input type="tel" id="smsNumber" name="sms_number" class="phone-number-input" placeholder="Phone number">
+                                </div>
+                            </div>
+
+                            <!-- Telegram -->
+                            <div class="contact-field">
+                                <label class="contact-label">✈️ Telegram</label>
+                                <input type="text" id="telegram" name="telegram" class="contact-input" placeholder="@username or phone number">
+                            </div>
+
+                            <!-- WhatsApp -->
+                            <div class="contact-field">
+                                <label class="contact-label">💬 WhatsApp</label>
+                                <div class="phone-input-group">
+                                    <select id="whatsappCountryCode" name="whatsapp_country_code" class="country-code-select">
+                                        <option value="">Code</option>
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+1">🇨🇦 +1</option>
+                                        <option value="+44">🇬🇧 +44</option>
+                                        <option value="+61">🇦🇺 +61</option>
+                                        <option value="+64">🇳🇿 +64</option>
+                                        <option value="+49">🇩🇪 +49</option>
+                                        <option value="+33">🇫🇷 +33</option>
+                                        <option value="+34">🇪🇸 +34</option>
+                                        <option value="+39">🇮🇹 +39</option>
+                                        <option value="+31">🇳🇱 +31</option>
+                                        <option value="+46">🇸🇪 +46</option>
+                                        <option value="+47">🇳🇴 +47</option>
+                                        <option value="+353">🇮🇪 +353</option>
+                                        <option value="+55">🇧🇷 +55</option>
+                                        <option value="+52">🇲🇽 +52</option>
+                                        <option value="+91">🇮🇳 +91</option>
+                                        <option value="+81">🇯🇵 +81</option>
+                                        <option value="+82">🇰🇷 +82</option>
+                                        <option value="+65">🇸🇬 +65</option>
+                                        <option value="+27">🇿🇦 +27</option>
+                                    </select>
+                                    <input type="tel" id="whatsappNumber" name="whatsapp_number" class="phone-number-input" placeholder="Phone number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 4: Additional info -->
+                        <div class="survey-question">
+                            <label class="survey-label">Anything else you want to share?</label>
+                            <p class="field-description">Tell us more about your preferences, favorite games, or what you're looking for</p>
+                            <textarea 
+                                id="additionalInfo" 
+                                name="additional_info" 
+                                class="text-area-input" 
+                                placeholder="Share anything that helps us personalize your experience..."
+                                maxlength="1000"
+                            ></textarea>
+                            <div class="word-count" id="wordCount">0 / 200 words</div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="survey-buttons">
+                            <button type="submit" class="submit-btn" id="extendedSurveySubmitBtn">
+                                Submit & View My Offers
+                            </button>
+                            <button type="button" class="skip-btn" onclick="skipExtendedSurvey()">
+                                Skip to offers →
                             </button>
                         </div>
                     </form>
@@ -1082,7 +1379,69 @@
                 }
             } catch (error) {
                 console.error('Survey error:', error);
-                // Still redirect even if survey fails
+            }
+            
+            // Show extended survey instead of redirecting
+            setTimeout(() => {
+                document.getElementById('surveySection').style.display = 'none';
+                document.getElementById('extendedSurveySection').style.display = 'block';
+            }, 500);
+        });
+
+        // Extended survey submission
+        document.getElementById('extendedSurveyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const extSurveyBtn = document.getElementById('extendedSurveySubmitBtn');
+            extSurveyBtn.disabled = true;
+            extSurveyBtn.textContent = 'Processing...';
+            
+            // Collect extended survey data
+            const bettingTypes = Array.from(document.querySelectorAll('input[name="betting_types"]:checked')).map(el => el.value);
+            const spendPerSession = document.querySelector('input[name="spend_per_session"]:checked')?.value;
+            
+            const smsCountryCode = document.getElementById('smsCountryCode').value;
+            const smsNumber = document.getElementById('smsNumber').value;
+            const sms = (smsCountryCode && smsNumber) ? smsCountryCode + smsNumber : null;
+            
+            const telegram = document.getElementById('telegram').value || null;
+            
+            const whatsappCountryCode = document.getElementById('whatsappCountryCode').value;
+            const whatsappNumber = document.getElementById('whatsappNumber').value;
+            const whatsapp = (whatsappCountryCode && whatsappNumber) ? whatsappCountryCode + whatsappNumber : null;
+            
+            const additionalInfo = document.getElementById('additionalInfo').value || null;
+            
+            const extendedSurveyData = {
+                subscriberId: window.subscriberId,
+                shortId: window.shortId,
+                bettingTypes: bettingTypes,
+                spendPerSession: spendPerSession,
+                sms: sms,
+                telegram: telegram,
+                whatsapp: whatsapp,
+                additionalInfo: additionalInfo
+            };
+            
+            console.log('Extended survey data:', extendedSurveyData);
+            
+            // Send extended survey data to n8n webhook
+            try {
+                const response = await fetch('https://n8n.automations.to/webhook/extended-survey', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(extendedSurveyData)
+                });
+                
+                if (response.ok) {
+                    console.log('Extended survey saved successfully');
+                } else {
+                    console.error('Extended survey save failed');
+                }
+            } catch (error) {
+                console.error('Extended survey error:', error);
             }
             
             // Redirect to offers page
@@ -1094,6 +1453,36 @@
         // Skip survey and go straight to offers
         function skipSurvey() {
             redirectToOffers();
+        }
+
+        // Skip extended survey
+        function skipExtendedSurvey() {
+            redirectToOffers();
+        }
+
+        // Word counter for additional info
+        const additionalInfoTextarea = document.getElementById('additionalInfo');
+        const wordCountDisplay = document.getElementById('wordCount');
+        
+        if (additionalInfoTextarea) {
+            additionalInfoTextarea.addEventListener('input', function() {
+                const text = this.value.trim();
+                const words = text ? text.split(/\s+/).filter(word => word.length > 0) : [];
+                const wordCount = words.length;
+                
+                wordCountDisplay.textContent = `${wordCount} / 200 words`;
+                
+                // Change color based on count
+                wordCountDisplay.classList.remove('warning', 'limit');
+                if (wordCount >= 200) {
+                    wordCountDisplay.classList.add('limit');
+                    // Truncate to 200 words
+                    const truncated = words.slice(0, 200).join(' ');
+                    this.value = truncated;
+                } else if (wordCount >= 180) {
+                    wordCountDisplay.classList.add('warning');
+                }
+            });
         }
 
         // Redirect to offers page
