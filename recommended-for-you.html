@@ -255,6 +255,133 @@
             text-align: center;
         }
 
+        /* Casino Table Section */
+        .table-section {
+            margin-top: 80px;
+        }
+
+        .table-title {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .table-subtitle {
+            text-align: center;
+            color: #a8b2d1;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .casino-table {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 200px 180px;
+            gap: 20px;
+            padding: 20px 30px;
+            background: rgba(255, 215, 0, 0.1);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffd700;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 200px 180px;
+            gap: 20px;
+            padding: 25px 30px;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .col-rank {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rank-number {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: #ffd700;
+        }
+
+        .casino-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .casino-favicon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: white;
+            padding: 4px;
+        }
+
+        .casino-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .bonus-text {
+            color: #a8b2d1;
+            font-size: 15px;
+        }
+
+        .table-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .table-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+        }
+
         /* Footer */
         .footer {
             background: rgba(0, 0, 0, 0.4);
@@ -336,6 +463,30 @@
             .footer-links {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            /* Table responsive */
+            .table-header {
+                display: none;
+            }
+
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .col-rank {
+                justify-content: flex-start;
+            }
+
+            .col-bonus {
+                font-size: 14px;
+            }
+
+            .table-button {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -453,6 +604,42 @@
                 <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
             </div>
         </div>
+
+        <!-- More Casinos Table -->
+        <div class="table-section">
+            <h2 class="table-title">More Great Casinos</h2>
+            <p class="table-subtitle">Additional trusted casinos you might enjoy</p>
+            
+            <div class="casino-table">
+                <div class="table-header">
+                    <div class="col-rank">#</div>
+                    <div class="col-casino">Casino</div>
+                    <div class="col-bonus">Sign Up Bonus</div>
+                    <div class="col-action">Action</div>
+                </div>
+
+                <!-- Jet Casino Row -->
+                <div class="table-row">
+                    <div class="col-rank">
+                        <span class="rank-number">4</span>
+                    </div>
+                    <div class="col-casino">
+                        <div class="casino-cell">
+                            <img src="https://www.google.com/s2/favicons?domain=jetcasino.com&sz=64" alt="Jet Casino" class="casino-favicon">
+                            <span class="casino-name">Jet Casino</span>
+                        </div>
+                    </div>
+                    <div class="col-bonus">
+                        <span class="bonus-text">Coming Soon</span>
+                    </div>
+                    <div class="col-action">
+                        <a href="#" class="table-button" rel="nofollow" target="_blank" data-casino="jetcasino">
+                            Visit Casino
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -502,6 +689,36 @@
             // Track click event
             button.addEventListener('click', function(e) {
                 console.log('Casino clicked:', casinoId, 'User:', userId);
+                
+                // Optional: Send click to your tracking webhook
+                fetch('https://n8n.automations.to/webhook/click', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        userId: userId,
+                        casino: casinoId,
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(err => console.log('Tracking error:', err));
+            });
+        });
+
+        // Set up tracking links for table buttons
+        document.querySelectorAll('.table-button').forEach(button => {
+            const casinoId = button.getAttribute('data-casino');
+            
+            let trackingUrl;
+            
+            // Set tracking URL based on casino
+            if (casinoId === 'jetcasino') {
+                trackingUrl = `https://jetb-intsemed3.com/c55f53d9c?clickid=${userId}`;
+            }
+            
+            button.href = trackingUrl;
+            
+            // Track click event
+            button.addEventListener('click', function(e) {
+                console.log('Table casino clicked:', casinoId, 'User:', userId);
                 
                 // Optional: Send click to your tracking webhook
                 fetch('https://n8n.automations.to/webhook/click', {
