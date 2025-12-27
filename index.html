@@ -259,6 +259,17 @@
             justify-content: center;
         }
 
+        .fortune-container,
+        .diamond-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
         .floating-icon {
             position: absolute;
             width: 120px;
@@ -358,8 +369,6 @@
 
         /* Fortune Cookie Styles */
         .fortune-container {
-            flex-direction: column;
-            gap: 30px;
             animation: fadeIn 1s ease-out;
         }
 
@@ -392,6 +401,11 @@
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 165, 0, 0.4) 0%, transparent 60%);
             animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         .fortune-text {
@@ -429,8 +443,6 @@
 
         /* Diamond Styles */
         .diamond-container {
-            flex-direction: column;
-            gap: 40px;
             animation: fadeIn 1s ease-out;
         }
 
@@ -452,12 +464,6 @@
             position: relative;
             z-index: 3;
             filter: drop-shadow(0 10px 30px rgba(255, 215, 0, 0.5));
-            animation: diamondRotate 8s linear infinite;
-        }
-
-        @keyframes diamondRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .diamond-rays {
