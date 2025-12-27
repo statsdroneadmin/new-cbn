@@ -441,6 +441,62 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        /* Footer Legal */
+        .footer-legal {
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 2px solid rgba(255, 215, 0, 0.2);
+            padding: 30px 40px;
+        }
+
+        .footer-legal-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #a8b2d1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .footer-links .separator {
+            color: #666;
+            margin: 0 15px;
+        }
+
+        .footer-copyright {
+            color: #666;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-legal {
+                padding: 20px;
+            }
+
+            .footer-links .separator {
+                display: block;
+                margin: 10px 0;
+                opacity: 0;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
         /* Survey Styles */
         .survey-section {
             animation: fadeInUp 0.6s ease-out;
@@ -1205,6 +1261,20 @@
             <div class="floating-icon">🎯</div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer-legal">
+        <div class="footer-legal-content">
+            <div class="footer-links">
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <span class="separator">•</span>
+                <a href="/terms-and-conditions.html">Terms & Conditions</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Casino Bonus Newsletter. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <script>
         const WEBHOOK_URL = 'https://n8n.automations.to/webhook/newsletter-signup-v2';
