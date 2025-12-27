@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommended Casinos - Just For You</title>
+    <title>Your Personalized Casino Recommendations</title>
+    <meta name="description" content="Exclusive casino bonuses selected just for you. Claim your welcome offers now!">
     <style>
         * {
             margin: 0;
@@ -13,110 +14,193 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: white;
-            margin-bottom: 50px;
+            min-height: 100vh;
         }
 
-        .header h1 {
-            font-size: 42px;
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+            padding: 20px 40px;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-nav a {
+            color: #a8b2d1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .tagline {
+            color: #ffd700;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             margin-bottom: 15px;
         }
 
-        .header p {
-            font-size: 18px;
-            opacity: 0.9;
+        .page-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
+        .page-subtitle {
+            color: #a8b2d1;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Casino Cards Grid */
         .casinos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .casino-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeIn 0.6s ease-out;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .casino-card:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .casino-card:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .casino-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
         }
 
         .casino-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
         }
 
         .casino-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
             margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
         .casino-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .casino-logo {
-            width: 80px;
-            height: 80px;
-            background: #f0f0f0;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 215, 0, 0.1);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 36px;
             margin-right: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         .casino-info h2 {
             font-size: 28px;
-            color: #333;
+            color: white;
             margin-bottom: 5px;
         }
 
         .casino-rating {
-            color: #FFD700;
-            font-size: 18px;
+            color: #ffd700;
+            font-size: 16px;
+        }
+
+        .bonus-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .bonus-label {
+            color: #ffd700;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .bonus-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .bonus-details {
+            font-size: 13px;
+            color: #a8b2d1;
         }
 
         .casino-features {
@@ -126,8 +210,8 @@
 
         .casino-features li {
             padding: 10px 0;
-            color: #666;
-            font-size: 15px;
+            color: #a8b2d1;
+            font-size: 14px;
             position: relative;
             padding-left: 30px;
         }
@@ -136,99 +220,149 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: #4CAF50;
+            color: #ffd700;
             font-weight: bold;
-            font-size: 18px;
-        }
-
-        .bonus-box {
-            background: #f8f8f8;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #667eea;
-        }
-
-        .bonus-box h3 {
-            color: #667eea;
             font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .bonus-amount {
-            font-size: 32px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .bonus-details {
-            font-size: 13px;
-            color: #888;
         }
 
         .claim-button {
             display: block;
             width: 100%;
             padding: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
             text-align: center;
             text-decoration: none;
             border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
             margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
         }
 
         .claim-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
         }
 
         .terms {
             font-size: 11px;
-            color: #999;
-            margin-top: 10px;
+            color: #666;
+            margin-top: 12px;
             text-align: center;
         }
 
+        /* Footer */
         .footer {
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 2px solid rgba(255, 215, 0, 0.2);
+            padding: 40px 40px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-disclaimer {
             text-align: center;
-            color: white;
-            margin-top: 60px;
-            padding: 30px;
-            opacity: 0.8;
-        }
-
-        .footer p {
-            margin: 10px 0;
+            color: #a8b2d1;
             font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
+        .footer-disclaimer strong {
+            color: #ffd700;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #a8b2d1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .main-content {
+                padding: 40px 20px 60px;
+            }
+
+            .page-title {
                 font-size: 32px;
             }
 
             .casinos-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer {
+                padding: 30px 20px 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎰 Your Personalized Casino Recommendations</h1>
-            <p>Exclusive bonuses selected just for you!</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">🎰 Casino Bonus Newsletter</a>
+            <nav class="header-nav">
+                <!-- Add navigation items here later if needed -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="tagline">Exclusive for You</div>
+            <h1 class="page-title">Your Personalized Recommendations</h1>
+            <p class="page-subtitle">We've selected these premium casinos based on your preferences. Claim your exclusive bonuses now!</p>
         </div>
 
         <div class="casinos-grid">
-            <!-- Casino 1 -->
+            <!-- Casino 1 - BitStarz -->
             <div class="casino-card">
-                <span class="casino-badge">🏆 RECOMMENDED #1</span>
+                <span class="casino-badge">🏆 Recommended #1</span>
                 <div class="casino-header">
                     <div class="casino-logo">🎲</div>
                     <div class="casino-info">
@@ -238,7 +372,7 @@
                 </div>
 
                 <div class="bonus-box">
-                    <h3>Welcome Bonus</h3>
+                    <div class="bonus-label">Welcome Bonus</div>
                     <div class="bonus-amount">$500 + 180 Free Spins</div>
                     <div class="bonus-details">First deposit bonus</div>
                 </div>
@@ -259,7 +393,7 @@
 
             <!-- Casino 2 - Cadoola -->
             <div class="casino-card">
-                <span class="casino-badge">🔥 TRENDING</span>
+                <span class="casino-badge">🔥 Trending</span>
                 <div class="casino-header">
                     <div class="casino-logo">🎰</div>
                     <div class="casino-info">
@@ -269,7 +403,7 @@
                 </div>
 
                 <div class="bonus-box">
-                    <h3>Welcome Bonus</h3>
+                    <div class="bonus-label">Welcome Bonus</div>
                     <div class="bonus-amount">€500 + 200 Free Spins</div>
                     <div class="bonus-details">First deposit bonus</div>
                 </div>
@@ -290,7 +424,7 @@
 
             <!-- Casino 3 - Alf Casino -->
             <div class="casino-card">
-                <span class="casino-badge">⚡ FAST PAYOUTS</span>
+                <span class="casino-badge">⚡ Fast Payouts</span>
                 <div class="casino-header">
                     <div class="casino-logo">👽</div>
                     <div class="casino-info">
@@ -300,7 +434,7 @@
                 </div>
 
                 <div class="bonus-box">
-                    <h3>Welcome Bonus</h3>
+                    <div class="bonus-label">Welcome Bonus</div>
                     <div class="bonus-amount">€500 + 200 Free Spins</div>
                     <div class="bonus-details">First deposit bonus</div>
                 </div>
@@ -319,13 +453,27 @@
                 <div class="terms">18+ T&Cs apply. BeGambleAware.org</div>
             </div>
         </div>
+    </main>
 
-        <div class="footer">
-            <p><strong>Why we recommend these casinos:</strong></p>
-            <p>All casinos are licensed, secure, and offer fair gaming. We may earn commission from casino links.</p>
-            <p>Gambling can be addictive. Please play responsibly. 18+</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-disclaimer">
+                <p><strong>Why we recommend these casinos:</strong></p>
+                <p>All casinos are licensed, secure, and offer fair gaming. We may earn commission from casino links.</p>
+                <p>Gambling can be addictive. Please play responsibly. 18+ only.</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-and-conditions.html">Terms & Conditions</a>
+            </div>
+            
+            <div class="footer-copyright">
+                © 2025 Casino Bonus Newsletter. All rights reserved.
+            </div>
         </div>
-    </div>
+    </footer>
 
     <script>
         // Get user short_id from URL parameter
