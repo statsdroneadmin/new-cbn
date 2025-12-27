@@ -40,6 +40,36 @@
             width: 100%;
         }
 
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 33.33%;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #ffd700;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
         .logo-section {
             margin-bottom: 40px;
         }
@@ -324,7 +354,7 @@
             }
 
             .graphics-side {
-                min-height: 400px;
+                display: none; /* Hide animated graphics on mobile */
             }
 
             h1 {
@@ -815,6 +845,14 @@
         <!-- Left Side - Form -->
         <div class="form-side">
             <div class="form-content">
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Step 1 of 3</div>
+                </div>
+
                 <div class="logo-section">
                     <div class="tagline">Get Exclusive Bonuses</div>
                     <h1>Casino Bonus Newsletter</h1>
@@ -1326,6 +1364,13 @@
                         document.querySelector('.benefits').style.display = 'none';
                         document.getElementById('surveySection').style.display = 'block';
                         successMessage.style.display = 'none';
+                        
+                        // Update progress bar to 2/3
+                        updateProgress(66.66, 'Step 2 of 3');
+                        
+                        // Scroll to top of form
+                        document.querySelector('.form-side').scrollTo({ top: 0, behavior: 'smooth' });
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                     }, 1800);
                 } else {
                     throw new Error('Subscription failed');
@@ -1385,6 +1430,13 @@
             setTimeout(() => {
                 document.getElementById('surveySection').style.display = 'none';
                 document.getElementById('extendedSurveySection').style.display = 'block';
+                
+                // Update progress bar to 3/3
+                updateProgress(100, 'Step 3 of 3');
+                
+                // Scroll to top
+                document.querySelector('.form-side').scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 500);
         });
 
@@ -1494,6 +1546,20 @@
                 window.location.href = `/recommended-for-you.html?user=${shortId}`;
             } else {
                 window.location.href = `/recommended-for-you.html?user=${subscriberId}`;
+            }
+        }
+
+        // Update progress bar
+        function updateProgress(percentage, text) {
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            if (progressFill) {
+                progressFill.style.width = percentage + '%';
+            }
+            
+            if (progressText) {
+                progressText.textContent = text;
             }
         }
     </script>
